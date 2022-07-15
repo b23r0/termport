@@ -1,7 +1,14 @@
 # termport
 A terminal GUI port based on the blazing fast GPU-accelerated Alacritty core.
 
-# Usage
+# Get Started
+
+```toml
+[dependencies]
+termport = {git = "https://github.com/b23r0/termport.git"}
+```
+
+# Example
 
 Download and compile alacritty-driver
 
