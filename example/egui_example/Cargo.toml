@@ -1,0 +1,11 @@
+[package]
+name = "egui_example"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.60"
+publish = false
+
+
+[dependencies]
+eframe = "0.18"
+termport = {path = "../.."}

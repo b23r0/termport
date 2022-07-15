@@ -54,6 +54,7 @@ pub fn new_term(driver_path : &String) -> Result<TermInstance>{
 #[test]
 fn test() {
     let mut term = new_term(&"alacritty_driver.exe".to_string()).unwrap();
-    term.write("hello term!".as_bytes()).unwrap();
+    let buf = "\x1b[0;31mHello Termport\x1b[0m".as_bytes();
+    term.write(buf).unwrap();
     term.wait_for_exit().unwrap();
 }
