@@ -10,7 +10,7 @@ termport = {git = "https://github.com/b23r0/termport.git"}
 
 # Example
 
-first ownload and compile alacritty-driver
+first download and compile alacritty-driver
 
 https://github.com/b23r0/alacritty-driver
 
