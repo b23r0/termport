@@ -10,11 +10,9 @@ termport = {git = "https://github.com/b23r0/termport.git"}
 
 # Example
 
-Download and compile alacritty-driver
+first download and compile alacritty-driver
 
 https://github.com/b23r0/alacritty-driver
-
-The following is an example of use
 
 ![image]( https://github.com/b23r0/termport/blob/main/example/egui_example/termport_egui.gif)
 
@@ -32,14 +30,10 @@ fn main() {
     );
 }
 
-struct MyApp {
-}
+struct MyApp;
 
 impl Default for MyApp {
-    fn default() -> Self {
-        Self {
-        }
-    }
+    fn default() -> Self { Self { } }
 }
 
 impl eframe::App for MyApp {
