@@ -1,10 +1,11 @@
 use std::net::{TcpStream, TcpListener};
 use std::io::*;
 use std::process::{Command, Child, ExitStatus};
+use std::sync::{Mutex, Arc};
 
 pub struct TermInstance{
     socket: TcpStream,
-    cmd : Child
+    cmd : Arc<Mutex<Child>>
 }
 
 impl TermInstance{
@@ -28,7 +29,7 @@ impl TermInstance{
 
         Ok(TermInstance{
             socket,
-            cmd
+            cmd : Arc::new(Mutex::new(cmd))
         })
     }
 
@@ -39,16 +40,22 @@ impl TermInstance{
         self.socket.read(buf)
     }
     pub fn wait_for_exit(&mut self) -> Result<ExitStatus>{
-        self.cmd.wait()
+        self.cmd.lock().unwrap().wait()
     }
     pub fn close(&mut self) -> Result<()>{
-        self.cmd.kill()
+        self.cmd.lock().unwrap().kill()
     }
 
 }
 
 pub fn new_term(driver_path : &String) -> Result<TermInstance>{
     TermInstance::new(driver_path)
+}
+
+impl Clone for TermInstance{
+    fn clone(&self) -> Self {
+        Self { socket: self.socket.try_clone().unwrap(), cmd: self.cmd.clone() }
+    }
 }
 
 #[test]
